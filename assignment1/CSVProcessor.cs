@@ -18,9 +18,9 @@ namespace assignment1
             {
                 StreamReader wineList = new StreamReader("WineList.csv");
                 arrayLength_Int32 = CountLinesInFile("WineList.csv");
-                String[] productNumber_String = new String[arrayLength_Int32];
-                String[] wineNames_String = new String[arrayLength_Int32];
-                String[] containerSize_String = new String[arrayLength_Int32];
+                String[] productNumber_String = new String[arrayLength_Int32 + 5];
+                String[] wineNames_String = new String[arrayLength_Int32 + 5];
+                String[] containerSize_String = new String[arrayLength_Int32 + 5];
                 ReadFile(wineList, productNumber_String, wineNames_String, containerSize_String);
                 UserInterface.Menu1(productNumber_String, wineNames_String, containerSize_String);
             }
@@ -33,7 +33,7 @@ namespace assignment1
             
         }
 
-        static int CountLinesInFile(String csv)
+        private static int CountLinesInFile(String csv)
         {
             int count = 0;
 
