@@ -22,6 +22,7 @@ namespace assignment1
                 String[] wineNames_String = new String[arrayLength_Int32];
                 String[] containerSize_String = new String[arrayLength_Int32];
                 ReadFile(wineList, productNumber_String, wineNames_String, containerSize_String);
+                UserInterface.Menu1(productNumber_String, wineNames_String, containerSize_String);
             }
             catch
             {
@@ -47,15 +48,15 @@ namespace assignment1
             return count;
         }
 
-        private static void ReadFile(StreamReader record, String[] product, String[] names, String[] size)
+        private static void ReadFile(StreamReader record, String[] id, String[] name, String[] size)
         {
             Int32 counter_Int32 = 0;
 
             while (!record.EndOfStream)
             {
                 String[] tempArray_String = record.ReadLine().Split(',');
-                product[counter_Int32] = tempArray_String[0];
-                names[counter_Int32] = tempArray_String[1];
+                id[counter_Int32] = tempArray_String[0];
+                name[counter_Int32] = tempArray_String[1];
                 size[counter_Int32] = tempArray_String[2];
                 counter_Int32++;
             }
