@@ -10,10 +10,24 @@ namespace assignment1
 {
     class MainProgram
     {
-
         static void Main(string[] args)
         {
-            CSVProcessor.Processor();
+            Int32 arrayCount = CSVProcessor.Processor();
+            WineItem[] wineItems = new WineItem[arrayCount + 5];
+            
+            
+            
+            
+            
+            //CSVProcessor.ReadFile(arrayCount);
+            WineItemCollection.PopulateCollection();
+
+            UserInterface ui1 = new UserInterface();
+
+            Int32 selection1_Int32 = ui1.InputMenu1();
+            WineItemCollection.ProcessMenu1(selection1_Int32);
+            
+
         }
 
         public static void Pause()
