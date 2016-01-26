@@ -16,8 +16,8 @@ namespace assignment1
 
             try
             {
-                StreamReader wineList = new StreamReader("WineList.csv");
-                arrayLength_Int32 = CountLinesInFile("WineList.csv");
+                StreamReader wineList = new StreamReader("../../../datafies/WineList.csv");
+                arrayLength_Int32 = CountLinesInFile("../../../datafies/WineList.csv");
                 String[] productNumber_String = new String[arrayLength_Int32 + 5];
                 String[] wineNames_String = new String[arrayLength_Int32 + 5];
                 String[] containerSize_String = new String[arrayLength_Int32 + 5];
