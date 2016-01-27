@@ -9,7 +9,7 @@ using System.IO;
 namespace assignment1
 {
 
-    
+
 
     class CSVProcessor
     {
@@ -19,13 +19,8 @@ namespace assignment1
             try
             {
                 StreamReader wineList = new StreamReader("../../../datafiles/WineList.csv");
-                arrayLength_Int32 = CountLinesInFile("../../../datafiles/WineList.csv");
-                //arrayLength_Int32 = Int32.Parse(wineList.ReadLine());
-                //String[] productNumber_String = new String[arrayLength_Int32 + 5];
-                //String[] wineNames_String = new String[arrayLength_Int32 + 5];
-                //String[] containerSize_String = new String[arrayLength_Int32 + 5];
-                //ReadFile(wineList, productNumber_String, wineNames_String, containerSize_String);
-                //UserInterface.Menu1(productNumber_String, wineNames_String, containerSize_String);
+                arrayLength_Int32 = CountLinesInFile(wineList); ;
+                ReadFile(arrayLength_Int32, wineList);
                 wineList.Close();
             }
             catch
@@ -34,33 +29,35 @@ namespace assignment1
                 Console.WriteLine("There was a error while reading the file.");
                 MainProgram.Pause();
             }
+
             return arrayLength_Int32;
-            
+
 
 
         }
 
-        private static Int32 CountLinesInFile(String csv)
+        private static Int32 CountLinesInFile(StreamReader csv)
         {
             Int32 count = 0;
+            String line;
 
-            using (StreamReader wineList = new StreamReader(csv))
+            while ((line = csv.ReadLine()) != null)
             {
-                String line;
-                while ((line = wineList.ReadLine()) != null)
-                {
-                    count++;
-                }
+                count++;
             }
-            
 
-            WineItem[] wineItems = new WineItem[count + 5];
+            csv.BaseStream.Position = 0;
+            return count;
+        }
 
+
+        public static void ReadFile(Int32 arrayCount, StreamReader wineList)
+        {
+            WineItem[] wineItems = new WineItem[arrayCount + 5];
 
             foreach (WineItem wineItem in wineItems)
             {
                 Int32 count2 = 0;
-                using (StreamReader wineList = new StreamReader(csv))
                 while (!wineList.EndOfStream)
                 {
                     String[] Temp = wineList.ReadLine().Split(',');
@@ -68,36 +65,6 @@ namespace assignment1
                     count2++;
                 }
             }
-            return count;
         }
-
-        //public static void PopulateString()
-        //{
-
-        //    foreach (WineItem wineItem in wineItems)
-        //    {
-        //        //Check to make sure that the current object is not null.
-        //        if (wineItem != null)
-        //        {
-        //            //output the information of the employee
-        //            Console.WriteLine(wineItem.ToString());
-        //        }
-        //    }
-}
-
-        // public static void ReadFile(Int32 arrayCount)
-        //{
-        //    Int32 counter_Int32 = 0;
-            
-
-            //while (!winelist.EndOfStream)
-            //{
-            //    String[] tempArray_String = winelist.ReadLine().Split(',');
-            //    id[counter_Int32] = tempArray_String[0];
-            //    name[counter_Int32] = tempArray_String[1];
-            //    size[counter_Int32] = tempArray_String[2];
-            //    counter_Int32++;
-            //}
-            //record.Close();
-        //}
     }
+}

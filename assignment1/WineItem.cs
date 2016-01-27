@@ -57,6 +57,34 @@ namespace assignment1
             return this.id + " " + this.description + " " + this.pack;
         }
 
+        public static void CreateString(Int32 selection2_Int32)
+        {
+            if (selection2_Int32 == 1)
+            {
+                //Sort Ascending (by id)
+            }
+            if (selection2_Int32 == 2)
+            {
+                //Sort Ascending (by id) and then reverse sort
+            }
+            String allOutput = " ";
+            //foreach (WineItem wineItem in wineItems)
+            //{
+            //    if (wineItem != null)
+            //    {
+            //        allOutput += wineItem.ToString() + Environment.NewLine;
+            //    }
+            //}
+
+            //UserInterface.PrintAllOutput(allOutput);
+
+
+         
+         }
+
+
+
+
         // Displays multiple results on the Console in Ascending or Descending order
         // depending on the user's selection.
 
