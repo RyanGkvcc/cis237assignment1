@@ -13,14 +13,18 @@ namespace assignment1
 
     class CSVProcessor
     {
-        public static Int32 Processor()
+        
+
+        public static Int32 Processor(StreamReader wineList)
         {
             Int32 arrayLength_Int32 = 0;
+            
+
             try
             {
-                StreamReader wineList = new StreamReader("../../../datafiles/WineList.csv");
+                
                 arrayLength_Int32 = CountLinesInFile(wineList); ;
-                ReadFile(arrayLength_Int32, wineList);
+                //ReadFile(arrayLength_Int32, wineList);
                 wineList.Close();
             }
             catch
@@ -50,10 +54,10 @@ namespace assignment1
             return count;
         }
 
-
-        public static void ReadFile(Int32 arrayCount, StreamReader wineList)
+        //public static void ReadFile(Int32 arrayCount, StreamReader wineList)
+        public static void ReadFile(WineItem[] wineItems, StreamReader wineList)
         {
-            WineItem[] wineItems = new WineItem[arrayCount + 5];
+            //WineItem[] wineItems = new WineItem[arrayCount + 5];
 
             foreach (WineItem wineItem in wineItems)
             {
@@ -65,6 +69,7 @@ namespace assignment1
                     count2++;
                 }
             }
+            wineList.Close();
         }
     }
 }

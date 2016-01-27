@@ -57,7 +57,7 @@ namespace assignment1
             return this.id + " " + this.description + " " + this.pack;
         }
 
-        public static void CreateString(Int32 selection2_Int32)
+        public static String CreateString(WineItem[] wineItems, Int32 selection2_Int32)
         {
             if (selection2_Int32 == 1)
             {
@@ -68,13 +68,15 @@ namespace assignment1
                 //Sort Ascending (by id) and then reverse sort
             }
             String allOutput = " ";
-            //foreach (WineItem wineItem in wineItems)
-            //{
-            //    if (wineItem != null)
-            //    {
-            //        allOutput += wineItem.ToString() + Environment.NewLine;
-            //    }
-            //}
+            foreach (WineItem wineItem in wineItems)
+            {
+                if (wineItem != null)
+                {
+                    allOutput += wineItem.ToString() + Environment.NewLine;
+                }
+            }
+
+            return allOutput;
 
             //UserInterface.PrintAllOutput(allOutput);
 
