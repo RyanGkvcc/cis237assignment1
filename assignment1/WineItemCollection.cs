@@ -9,7 +9,7 @@ namespace assignment1
     class WineItemCollection
     {
 
-        Random randomNumber = new Random();
+        
 
         private String aisle;
         private String row;
@@ -60,20 +60,88 @@ namespace assignment1
             return this.aisle + "-" + this.row + "-" + this.shelf;
         }
 
-        //public static String GetLocation()
-        //{
+        public static void SetLocation(WineItem[] wineItems, WineItemCollection[] collection, Random randomNumber)
+        {
+            Int32 anothercounter = 0;
+            foreach (WineItem wineItem in wineItems)
+            {
+                String aisle1 = " ";
+                String row1 = " ";
+                String shelf1 = " ";
+                if (wineItem != null)
+                {
+                    Int32 locationCounter;
+                    for(locationCounter = 0; locationCounter < 5; locationCounter++)
+                    {
+                        Int32 low = 0;
+                        Int32 high = 10;
+                        Int32 temp = RandomGenerator(low, high, randomNumber);
+                        String temp2 = temp.ToString();
+                        aisle1 += temp2;
+                    }
+                    for (locationCounter = 0; locationCounter < 3; locationCounter++)
+                    {
+                        Int32 low = 65;
+                        Int32 high = 91;
+                        Int32 temp1 = RandomGenerator(low, high, randomNumber);
+                        String temp2 = ConvertToAscii(temp1);
+                        aisle1 += temp2;
+                    }
+                    for (locationCounter = 0; locationCounter < 4; locationCounter++)
+                    {
+                        Int32 low = 0;
+                        Int32 high = 10;
+                        Int32 temp = RandomGenerator(low, high, randomNumber);
+                        String temp2 = temp.ToString();
+                        shelf1 += temp2;
+                    }
+                    collection[anothercounter] = new WineItemCollection(aisle1, row1, shelf1);
+                }
+            }
+        }
 
-        //}
+        private static Int32 RandomGenerator(Int32 low, Int32 high, Random randomNumber)
+        {
+            Int32 number;
+            number = randomNumber.Next(low, high);
+            return number;
+        }
 
 
 
 
-        //private static Int32 RandomGenerator(low, high)
-        //{
-        //    Int32 number;
-        //    number = randomNumber.Next(low, high);
-        //    return number;
-        //}
+        private static String ConvertToAscii(Int32 number)
+        {
+            String ascii = " ";
+            try
+            {
+                //Int32.TryParse(number, out value);
+                char a = (char)number;
+                ascii = a.ToString();
+                
+            }
+            catch
+            {
+                Console.WriteLine("Could not convert to Ascii letter");
+            }
+            return ascii;
+
+        }
+
+        public static String CreateAnotherString(WineItemCollection[] collections)
+        {
+            String location = " ";
+            foreach (WineItemCollection collection in collections)
+            {
+                if (collection != null)
+                {
+                    location += collection.ToString() + Environment.NewLine;
+                }
+            }
+
+            return location;
+        }
+
 
 
 
@@ -91,32 +159,9 @@ namespace assignment1
         //}
 
 
-        // Sorts the the file by id and swaps the id, name and size if needed.
-        public static void BubbleSort(WineItem[] wineItems)
-        {
-            for (Int32 anotherCounter_Int32 = 1; anotherCounter_Int32 < wineItems.Length; anotherCounter_Int32++)
-            {
-                for (Int32 yetAnotherCounter_Int32 = 0; yetAnotherCounter_Int32 < wineItems.Length - anotherCounter_Int32; yetAnotherCounter_Int32++)
-                {
-                    if (wineItems[yetAnotherCounter_Int32].Id.CompareTo(wineItems[yetAnotherCounter_Int32 + 1].Id) > 0)
-                    {
-                        Swap(ref wineItems[yetAnotherCounter_Int32], ref wineItems[yetAnotherCounter_Int32 + 1]);
-                    }
-                    else
-                    {
-                        //Leave good enough alone
-                    }
-                }
-            }
-        }
+        
 
-        // The process used to swap two arrays.
-        private static void Swap(ref WineItem greater, ref WineItem less)
-        {
-            //String temp_String = greater;
-            //greater = less;
-            //less = temp_String;
-        }
+        
 
        
     }

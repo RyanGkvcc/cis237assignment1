@@ -86,10 +86,61 @@ namespace assignment1
         }
 
         //Print all information contained in the string
-        public void PrintAllOutput(String allOutput)
+        public void PrintAllOutput(String allOutput, String location)
         {
-            Console.WriteLine(allOutput);
+            Console.WriteLine(allOutput + " " + location);
         }
 
-     }
+        public String SearchId()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter the ID you wish to search for: ");
+            Console.WriteLine();
+            String temp = Console.ReadLine();
+            return temp;
+        }
+
+        public void NotFound(String temp)
+        {
+            Console.WriteLine();
+            Console.WriteLine("There was no Id found matching {0} in the wine directory.", temp);
+            MainProgram.Pause();
+        }
+
+        public void PrintMatchingItem(WineItem[] wineItems, Int32 foundLocation)
+        {
+            Console.WriteLine(" ** Match Found ** ");
+            Console.WriteLine();
+            Console.WriteLine(wineItems[foundLocation]);
+            Console.WriteLine();
+        }
+
+        public void UserAddWine(WineItem[] wineItems, Int32 location)
+        {
+            Console.Clear();
+            Console.WriteLine("Enter the ID you wish to add to the wine directory: ");
+            Console.WriteLine();
+            String temp1 = Console.ReadLine();
+            Console.WriteLine();
+            Console.WriteLine("Enter the Description you wish to add to the wine directory: ");
+            Console.WriteLine();
+            String temp2 = Console.ReadLine();
+            Console.WriteLine("Enter the Pack Size you wish to add to the wine directory: ");
+            Console.WriteLine();
+            String temp3 = Console.ReadLine();
+            try
+            {
+                String[] Temp = { temp1, temp2, temp3 };
+                CSVProcessor.AddToArray(wineItems, location, Temp);
+                Console.WriteLine("Your item has been successfully added to the wine directory!");
+            }
+            catch
+            {
+                Console.WriteLine("There seems to be an issue with adding your item to the wine directory.");
+            }
+            
+
+        }
+
+    }
 }

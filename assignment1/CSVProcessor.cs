@@ -65,11 +65,17 @@ namespace assignment1
                 while (!wineList.EndOfStream)
                 {
                     String[] Temp = wineList.ReadLine().Split(',');
-                    wineItems[count2] = new WineItem(Temp[0], Temp[1], Temp[2]);
+                    AddToArray(wineItems, count2, Temp);
+                    //wineItems[count2] = new WineItem(Temp[0], Temp[1], Temp[2]);
                     count2++;
                 }
             }
             wineList.Close();
+        }
+
+        public static void AddToArray(WineItem[] wineItems, Int32 location, String[] Temp)
+        {
+            wineItems[location] = new WineItem(Temp[0], Temp[1], Temp[2]);
         }
     }
 }

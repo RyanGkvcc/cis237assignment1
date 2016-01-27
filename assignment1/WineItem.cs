@@ -62,10 +62,13 @@ namespace assignment1
             if (selection2_Int32 == 1)
             {
                 //Sort Ascending (by id)
+                BubbleSort(wineItems);
             }
             if (selection2_Int32 == 2)
             {
                 //Sort Ascending (by id) and then reverse sort
+                BubbleSort(wineItems);
+                Array.Reverse(wineItems);
             }
             String allOutput = " ";
             foreach (WineItem wineItem in wineItems)
@@ -79,10 +82,54 @@ namespace assignment1
             return allOutput;
 
             //UserInterface.PrintAllOutput(allOutput);
-
-
-         
          }
+
+        // Sorts the the file by id and swaps the id, name and size if needed.
+        public static void BubbleSort(WineItem[] wineItems)
+        {
+            for (Int32 anotherCounter_Int32 = 1; anotherCounter_Int32 < wineItems.Length; anotherCounter_Int32++)
+            {
+                for (Int32 yetAnotherCounter_Int32 = 0; yetAnotherCounter_Int32 < wineItems.Length - anotherCounter_Int32; yetAnotherCounter_Int32++)
+                {
+                    if (wineItems[yetAnotherCounter_Int32].Id.CompareTo(wineItems[yetAnotherCounter_Int32 + 1].Id) > 0)
+                    {
+                        Swap(ref wineItems[yetAnotherCounter_Int32], ref wineItems[yetAnotherCounter_Int32 + 1]);
+                    }
+                    else
+                    {
+                        //Leave good enough alone
+                    }
+                }
+            }
+        }
+
+        // The process used to swap two arrays.
+        private static void Swap(ref WineItem greater, ref WineItem less)
+        {
+            //String temp_String = greater;
+            //greater = less;
+            //less = temp_String;
+        }
+
+        public static Int32 SequentialSearch(WineItem[] wineItems, String temp)
+        {
+            Boolean match_Boolean = false;
+            Int32 whyNotAnotherCounter_Int32 = 0;
+            Int32 location_Int32 = -1;
+
+            while (whyNotAnotherCounter_Int32 < wineItems.Length && !match_Boolean)
+            {
+                //if (wineItems[whyNotAnotherCounter_Int32] == temp)
+                //{
+                //    UserInterface.PrintMatchingItem(wineItems, whyNotAnotherCounter_Int32);
+                //    location_Int32 = whyNotAnotherCounter_Int32;
+                //}
+                whyNotAnotherCounter_Int32++;
+            }
+            return location_Int32;
+        }
+
+
 
 
 
