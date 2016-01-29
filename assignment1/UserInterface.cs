@@ -86,9 +86,9 @@ namespace assignment1
         }
 
         //Print all information contained in the string
-        public void PrintAllOutput(String allOutput, String location)
+        public void PrintAllOutput(String allOutput)
         {
-            Console.WriteLine(allOutput + " " + location);
+            Console.WriteLine(allOutput);
         }
 
         public String SearchId()

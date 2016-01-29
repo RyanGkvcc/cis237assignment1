@@ -57,7 +57,21 @@ namespace assignment1
             return this.id + " " + this.description + " " + this.pack;
         }
 
-        public static String CreateString(WineItem[] wineItems, Int32 selection2_Int32)
+        public static String CreateString(WineItem[] wineItems)
+        {
+            String allOutput = "";
+            foreach (WineItem wineItem in wineItems)
+            {
+                if (wineItem != null)
+               {
+                    allOutput += wineItem.ToString() + Environment.NewLine;
+               }
+            }
+            
+            return allOutput;
+        }
+
+        public static String CreateLongString(WineItem[] wineItems, WineItemCollection[] collections, Int32 selection2_Int32)
         {
             if (selection2_Int32 == 1)
             {
@@ -70,19 +84,28 @@ namespace assignment1
                 BubbleSort(wineItems);
                 Array.Reverse(wineItems);
             }
-            String allOutput = " ";
+            
+            String allOutput = "";
+            Int32 stringCounter = 0;
+
             foreach (WineItem wineItem in wineItems)
             {
                 if (wineItem != null)
                 {
-                    allOutput += wineItem.ToString() + Environment.NewLine;
+
+                    allOutput += wineItem.ToString() + " Storage Location: " + collections[stringCounter].ToString() + Environment.NewLine;
+                    stringCounter++;
+                    //details = wineItem.ToString();
+                    ////String location = WineItemCollection.CreateAnotherString(collections);
+                    //location = collections.ToString();
+                    //String lineOutput = details + " " + location;
+                    //allOutput += lineOutput + Environment.NewLine;
+
                 }
             }
-
+            
             return allOutput;
-
-            //UserInterface.PrintAllOutput(allOutput);
-         }
+        }
 
         // Sorts the the file by id and swaps the id, name and size if needed.
         public static void BubbleSort(WineItem[] wineItems)
@@ -91,7 +114,7 @@ namespace assignment1
             {
                 for (Int32 yetAnotherCounter_Int32 = 0; yetAnotherCounter_Int32 < wineItems.Length - anotherCounter_Int32; yetAnotherCounter_Int32++)
                 {
-                    if (wineItems[yetAnotherCounter_Int32 + 1] != null)
+                    if (wineItems[yetAnotherCounter_Int32 + 1] != null && wineItems[yetAnotherCounter_Int32] != null)
                     {
                         if (wineItems[yetAnotherCounter_Int32].Id.CompareTo(wineItems[yetAnotherCounter_Int32 + 1].Id) > 0)
                         {

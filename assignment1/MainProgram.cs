@@ -27,29 +27,24 @@ namespace assignment1
             {
                 selection1_Int32 = ui.InputMenu1();
                 String output;
-                String location;
-
+                
                 switch (selection1_Int32)
                 {
 
                     case 1:
                         {
-                            output = WineItem.CreateString(wineItems, selection2_Int32);
-                            WineItemCollection.SetLocation(wineItems, collections, randomNumber);
-                            location = WineItemCollection.CreateAnotherString(collections);
-                            ui.PrintAllOutput(output, location);
+                            output = WineItem.CreateString(wineItems);
+                            ui.PrintAllOutput(output);
                             break;
                         }
                     case 2:
                         {
-                            //Int32 selection1_Int32 = UserInterface.InputMenu2();
-                            //Int32 orderSelection = AscendingDescending();
-                            //WineItem.BubbleSort(wineItems);
-                            //WineItem.ListArray(id, name, size, orderSelection);
                             selection2_Int32 = ui.InputMenu2();
-                            output = WineItem.CreateString(wineItems, selection2_Int32);
-                            location = WineItemCollection.CreateAnotherString(collections);
-                            ui.PrintAllOutput(output, location);
+                            WineItemCollection.SetLocation(wineItems, collections, randomNumber);
+                            output = WineItem.CreateLongString(wineItems, collections, selection2_Int32);
+                            //location = WineItemCollection.CreateAnotherString(collections);
+                            ui.PrintAllOutput(output);
+                            selection2_Int32 = 0;
                             break;
                         }
                     case 3:

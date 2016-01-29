@@ -65,13 +65,13 @@ namespace assignment1
             Int32 anothercounter = 0;
             foreach (WineItem wineItem in wineItems)
             {
-                String aisle1 = " ";
-                String row1 = " ";
-                String shelf1 = " ";
+                String aisle1 = "";
+                String row1 = "";
+                String shelf1 = "";
                 if (wineItem != null)
                 {
                     Int32 locationCounter;
-                    for(locationCounter = 0; locationCounter < 5; locationCounter++)
+                    for(locationCounter = 0; locationCounter < 4; locationCounter++)
                     {
                         Int32 low = 0;
                         Int32 high = 10;
@@ -79,15 +79,15 @@ namespace assignment1
                         String temp2 = temp.ToString();
                         aisle1 += temp2;
                     }
-                    for (locationCounter = 0; locationCounter < 3; locationCounter++)
+                    for (locationCounter = 0; locationCounter < 2; locationCounter++)
                     {
                         Int32 low = 65;
                         Int32 high = 91;
                         Int32 temp1 = RandomGenerator(low, high, randomNumber);
                         String temp2 = ConvertToAscii(temp1);
-                        aisle1 += temp2;
+                        row1 += temp2;
                     }
-                    for (locationCounter = 0; locationCounter < 4; locationCounter++)
+                    for (locationCounter = 0; locationCounter < 3; locationCounter++)
                     {
                         Int32 low = 0;
                         Int32 high = 10;
@@ -97,6 +97,7 @@ namespace assignment1
                     }
                     collection[anothercounter] = new WineItemCollection(aisle1, row1, shelf1);
                 }
+                anothercounter++;
             }
         }
 
@@ -112,7 +113,7 @@ namespace assignment1
 
         private static String ConvertToAscii(Int32 number)
         {
-            String ascii = " ";
+            String ascii = "";
             try
             {
                 //Int32.TryParse(number, out value);
@@ -130,39 +131,16 @@ namespace assignment1
 
         public static String CreateAnotherString(WineItemCollection[] collections)
         {
-            String location = " ";
+            String location = "";
             foreach (WineItemCollection collection in collections)
             {
                 if (collection != null)
                 {
-                    location += collection.ToString() + Environment.NewLine;
+                    location = collection.ToString();
                 }
             }
 
             return location;
         }
-
-
-
-
-        //public static void PopulateCollection()
-        //{
-        //    Int32 counter = 0;
-        //    StreamReader csv = new StreamReader("../../../datafiles/WineList.csv");
-        //    while (!csv.EndOfStream)
-        //    {
-        //        String[] Temp = csv.ReadLine().Split(',');
-        //        //WineItem[] wineItem[counter] = new WineItem(Temp[0], Temp[1], Temp[2]);
-        //        counter++;
-        //    }
-        //    csv.Close();
-        //}
-
-
-        
-
-        
-
-       
     }
 }
