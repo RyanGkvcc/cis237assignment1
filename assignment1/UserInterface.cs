@@ -107,8 +107,9 @@ namespace assignment1
             MainProgram.Pause();
         }
 
-        public void PrintMatchingItem(WineItem[] wineItems, Int32 foundLocation)
+        public static void PrintMatchingItem(WineItem[] wineItems, Int32 foundLocation)
         {
+            Console.WriteLine();
             Console.WriteLine(" ** Match Found ** ");
             Console.WriteLine();
             Console.WriteLine(wineItems[foundLocation]);

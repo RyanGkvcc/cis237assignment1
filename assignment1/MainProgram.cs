@@ -64,8 +64,8 @@ namespace assignment1
                         }
                     case 4:
                         {
-                            addToArrayCount++;
                             ui.UserAddWine(wineItems, addToArrayCount);
+                            addToArrayCount++;
                             break;
                         }
                     case 5:

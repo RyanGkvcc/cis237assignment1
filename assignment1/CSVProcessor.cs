@@ -25,7 +25,7 @@ namespace assignment1
                 
                 arrayLength_Int32 = CountLinesInFile(wineList); ;
                 //ReadFile(arrayLength_Int32, wineList);
-                wineList.Close();
+                //wineList.Close();
             }
             catch
             {
