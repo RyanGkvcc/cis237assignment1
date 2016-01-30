@@ -60,6 +60,7 @@ namespace assignment1
             return this.aisle + "-" + this.row + "-" + this.shelf;
         }
 
+        //Generates a 3 part location for where the item is supposably stored
         public static void SetLocation(WineItem[] wineItems, WineItemCollection[] collection, Random randomNumber)
         {
             Int32 anothercounter = 0;
@@ -71,6 +72,8 @@ namespace assignment1
                 if (wineItem != null)
                 {
                     Int32 locationCounter;
+
+                    //Generates the aisle location of the item (4 digits)
                     for(locationCounter = 0; locationCounter < 4; locationCounter++)
                     {
                         Int32 low = 0;
@@ -79,6 +82,7 @@ namespace assignment1
                         String temp2 = temp.ToString();
                         aisle1 += temp2;
                     }
+                    //Generates the row location of the item (2 uppercase alpha characters)
                     for (locationCounter = 0; locationCounter < 2; locationCounter++)
                     {
                         Int32 low = 65;
@@ -87,6 +91,7 @@ namespace assignment1
                         String temp2 = ConvertToAscii(temp1);
                         row1 += temp2;
                     }
+                    //Generates the shelf location of the item (3 digits)
                     for (locationCounter = 0; locationCounter < 3; locationCounter++)
                     {
                         Int32 low = 0;
@@ -101,6 +106,7 @@ namespace assignment1
             }
         }
 
+        //Generates a random number within the range passed
         private static Int32 RandomGenerator(Int32 low, Int32 high, Random randomNumber)
         {
             Int32 number;
@@ -110,7 +116,7 @@ namespace assignment1
 
 
 
-
+        //Converts the random number that has been passed into an ascii character
         private static String ConvertToAscii(Int32 number)
         {
             String ascii = "";
@@ -129,18 +135,20 @@ namespace assignment1
 
         }
 
-        public static String CreateAnotherString(WineItemCollection[] collections)
-        {
-            String location = "";
-            foreach (WineItemCollection collection in collections)
-            {
-                if (collection != null)
-                {
-                    location = collection.ToString();
-                }
-            }
 
-            return location;
-        }
+        //Currently not used!
+        //public static String CreateAnotherString(WineItemCollection[] collections)
+        //{
+        //    String location = "";
+        //    foreach (WineItemCollection collection in collections)
+        //    {
+        //        if (collection != null)
+        //        {
+        //            location = collection.ToString();
+        //        }
+        //    }
+
+        //    return location;
+        //}
     }
 }

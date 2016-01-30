@@ -57,6 +57,7 @@ namespace assignment1
             return this.id + " " + this.description + " " + this.pack;
         }
 
+        //Creates a string with each item in the directory on a new line
         public static String CreateString(WineItem[] wineItems)
         {
             String allOutput = "";
@@ -71,18 +72,25 @@ namespace assignment1
             return allOutput;
         }
 
+        //Sorts the array in ascending or descending order depending on user input.
+        //Creates a string with each item and the location on a new line.
+        //Ex: Item + Location
+        //    Item + Location
+        //    ..etc.
         public static String CreateLongString(WineItem[] wineItems, WineItemCollection[] collections, Int32 selection2_Int32)
         {
+            Boolean backwardsArray = false;
             if (selection2_Int32 == 1)
             {
-                //Sort Ascending (by id)
+                //Sort Ascending (by id).
                 BubbleSort(wineItems);
             }
             if (selection2_Int32 == 2)
             {
-                //Sort Ascending (by id) and then reverse sort
+                //Sort Ascending (by id) and then reverse sort (for descending result).
                 BubbleSort(wineItems);
                 Array.Reverse(wineItems);
+                backwardsArray = true;
             }
             
             String allOutput = "";
@@ -92,18 +100,17 @@ namespace assignment1
             {
                 if (wineItem != null)
                 {
-
+                    //I am not sure if this is the correct way to increment the counter for the collection, but it works.
+                    //My method of thinking is that if there is an item, it must be stored in a location.
                     allOutput += wineItem.ToString() + " Storage Location: " + collections[stringCounter].ToString() + Environment.NewLine;
                     stringCounter++;
-                    //details = wineItem.ToString();
-                    ////String location = WineItemCollection.CreateAnotherString(collections);
-                    //location = collections.ToString();
-                    //String lineOutput = details + " " + location;
-                    //allOutput += lineOutput + Environment.NewLine;
-
                 }
             }
-            
+            if (backwardsArray)
+            {
+                Array.Reverse(wineItems); // had issues with seaching an array with the first few items = null.
+            }
+
             return allOutput;
         }
 
@@ -138,9 +145,35 @@ namespace assignment1
             less = temp_String;
         }
 
+
+        //Directs the program to run the selected search type
+        public static Int32 SearchType(WineItem[] wineItems, String temp, Int32 selection3_Int32, Int32 arrayCount)
+        {
+            Int32 foundLocation = -1;
+            switch (selection3_Int32)
+            {
+                case 1:
+                    {
+                        foundLocation = SequentialSearch(wineItems, temp);
+                        break;
+                    }
+
+                case 2:
+                    {
+                        WineItem.BubbleSort(wineItems);
+                        foundLocation = BinarySearch(wineItems, temp, arrayCount);
+                        break;
+                    }
+
+            }
+                
+            return foundLocation;
+        }
+
+        //Compares the user input to every item one after another, and only prints the matching items to the terminal.
+        //Allows for more than one matching item to be printed to the terminal.
         public static Int32 SequentialSearch(WineItem[] wineItems, String temp)
         {
-            //Boolean match_Boolean = false;
             Int32 whyNotAnotherCounter_Int32 = 0;
             Int32 location_Int32 = -1;
 
@@ -161,45 +194,35 @@ namespace assignment1
             return location_Int32;
         }
 
-
-
-
-
-
-        // Displays multiple results on the Console in Ascending or Descending order
-        // depending on the user's selection.
-
-
-        //public static void ListArray( String[] id, String[] name, String[] size, Int32 orderSelection)
-        //{
-        //    Console.Clear();
-        //    Console.WriteLine(" Wine Directory ");
-        //    Console.WriteLine();
-        //    Console.WriteLine("{0,-8} {1,4} {2,12}", "Id", "Name", "Size");
-        //    Console.WriteLine();
-        //    switch (orderSelection)
-        //    {
-        //        case 1:
-        //            {
-        //                for (Int32 localCounter_Int32 = 0; localCounter_Int32 < id.Length; localCounter_Int32++)
-        //                {
-        //                    Console.WriteLine("{0,-8} {1,4} {2,12}", id[localCounter_Int32], name[localCounter_Int32], size[localCounter_Int32]);   // Output in Ascending order.
-        //                }
-        //                break;
-        //            }
-        //        case 2:
-        //            {
-        //                Array.Reverse(id);
-        //                Array.Reverse(name);
-        //                Array.Reverse(size);
-        //                for (Int32 localCounter_Int32 = 0; localCounter_Int32 < id.Length; localCounter_Int32++)
-        //                {
-        //                    Console.WriteLine("{0,-8} {1,4} {2,12}", id[localCounter_Int32], name[localCounter_Int32], size[localCounter_Int32]);   // Output in Descending order.
-        //                }
-        //                break;
-        //            }
-        //    }
-
-        //}
+        //Sorts the array and then compares the user input to the sorted list.
+        //This method does not compare every item in the array. It keeps dividing the
+        //array in half until a match is found or it cannot be divided in half again.
+        //This method does not allow for multiple matches to be displayed in the terminal.
+        public static Int32 BinarySearch(WineItem[] wineItems, String temp, Int32 arrayCount)
+        {
+            Int32 beginSearch_Int32 = 0;
+            Int32 endSearch_Int32 = wineItems.Length - 1;
+            Boolean match_Boolean = false;
+            Int32 foundLocation_Int32 = -1;
+            while (beginSearch_Int32 <= endSearch_Int32 && !match_Boolean)
+            {
+                Int32 middle = (beginSearch_Int32 + endSearch_Int32) / 2;
+                if (String.Compare(wineItems[middle].Id, temp, true) == 0)
+                {
+                    match_Boolean = true;
+                    foundLocation_Int32 = middle;
+                    UserInterface.PrintMatchingItem(wineItems, foundLocation_Int32);
+                }
+                else if (String.Compare(wineItems[middle].Id, temp, true) > 0)
+                {
+                    endSearch_Int32 = middle - 1;
+                }
+                else
+                {
+                    beginSearch_Int32 = middle + 1;
+                }
+            }
+            return foundLocation_Int32;
+        }
     }
 }

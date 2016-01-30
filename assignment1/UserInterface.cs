@@ -60,7 +60,7 @@ namespace assignment1
             //While the input is NOT valid
             while (input2 != "1" && input2 != "2")
             {
-                //Propt the user for a valid choice
+                //Propt the user for a valid choice.
                 Console.WriteLine("That is not a valid entry");
                 Console.WriteLine("Please make a valid choice (1-2)");
                 Console.WriteLine();
@@ -85,12 +85,56 @@ namespace assignment1
             Console.WriteLine();
         }
 
+        public Int32 InputMenu3()
+        {
+            //Prints the second menu to search Sequential or Binary.
+            this.printMenu3();
+
+            //Store the users input from the terminal. 
+            String input3 = Console.ReadLine();
+
+            //While the input is NOT valid
+            while (input3 != "1" && input3 != "2")
+            {
+                //Propt the user for a valid choice.
+                Console.WriteLine("That is not a valid entry");
+                Console.WriteLine("Please make a valid choice (1-2)");
+                Console.WriteLine();
+                //Reprint the menu for the user.
+                this.printMenu3();
+                //Re-fetch the user input from the console
+                input3 = Console.ReadLine();
+            }
+
+            //Parse the valid entry, and return to navigate the program
+            return Int32.Parse(input3);
+        }
+
+        private void printMenu3()
+        {
+            Console.Clear();
+            Console.WriteLine("Do you wish to Sequential Search or Binary Search?");
+            Console.WriteLine();
+            Console.WriteLine("1: Sequential");
+            Console.WriteLine("2: Binary");
+            Console.WriteLine();
+        }
+
+        //Displays a message if there is a problem opening the input file.
+        public static void FileErrorMessage()
+        {
+            Console.Clear();
+            Console.WriteLine("There was a error while reading the file.");
+            MainProgram.Pause();
+        }
+
         //Print all information contained in the string
         public void PrintAllOutput(String allOutput)
         {
             Console.WriteLine(allOutput);
         }
 
+        //Prompts the user to enter an Id that will be searched for.
         public String SearchId()
         {
             Console.Clear();
@@ -100,6 +144,7 @@ namespace assignment1
             return temp;
         }
 
+        //Displays a message if the item Id was not successfully found. 
         public void NotFound(String temp)
         {
             Console.WriteLine();
@@ -107,6 +152,7 @@ namespace assignment1
             MainProgram.Pause();
         }
 
+        //Displays all matching items with the Id the user input.
         public static void PrintMatchingItem(WineItem[] wineItems, Int32 foundLocation)
         {
             Console.WriteLine();
@@ -116,7 +162,10 @@ namespace assignment1
             Console.WriteLine();
         }
 
-        public void UserAddWine(WineItem[] wineItems, Int32 location)
+        //Prompts the user to enter an ID, Description, and Pack Size for the item being added to the list.
+        //Displays a message if the item was successfully added to the list.
+        //Displays a message if the item was NOT successfully added to the list.
+        public Int32 UserAddWine(WineItem[] wineItems, Int32 location)
         {
             Console.Clear();
             Console.WriteLine("Enter the ID you wish to add to the wine directory: ");
@@ -126,22 +175,26 @@ namespace assignment1
             Console.WriteLine("Enter the Description you wish to add to the wine directory: ");
             Console.WriteLine();
             String temp2 = Console.ReadLine();
+            Console.WriteLine();
             Console.WriteLine("Enter the Pack Size you wish to add to the wine directory: ");
             Console.WriteLine();
             String temp3 = Console.ReadLine();
-            try
+            Console.WriteLine();
+            if (temp1 != "" && temp2 != "" && temp3 != "")
             {
                 String[] Temp = { temp1, temp2, temp3 };
                 CSVProcessor.AddToArray(wineItems, location, Temp);
                 Console.WriteLine("Your item has been successfully added to the wine directory!");
+                Console.WriteLine();
+                location++;
+                
             }
-            catch
+            else
             {
                 Console.WriteLine("There seems to be an issue with adding your item to the wine directory.");
+                Console.WriteLine();
             }
-            
-
+            return location;
         }
-
     }
 }
