@@ -39,6 +39,10 @@ namespace assignment1
 {
     class MainProgram
     {
+        //Establishes a StreamReader, Random Number, UserInterface.
+        //Establishes the WineItem & WineItemCollection class arrays bases on the size of the input file.
+        //Reads the input file into the WineItem array.
+        //Directs the program based on user input.
         static void Main(string[] args)
         {
             StreamReader wineList = new StreamReader("../../../datafiles/WineList.csv");
@@ -53,7 +57,7 @@ namespace assignment1
 
             Int32 selection1_Int32 = 0;
             
-            
+            //While the user has not chosen to exit the program.
             while (selection1_Int32 != 5)
             {
                 selection1_Int32 = ui.InputMenu1();

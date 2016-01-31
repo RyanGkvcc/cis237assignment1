@@ -2,7 +2,7 @@
 
 ## Due 02-01-2016
 
-## Author
+## Author: Ryan Gowan
 
 ## Description
 
@@ -52,8 +52,8 @@ Suggestion/Hints:
 * Remember to handle the case when the user has entered no information. You can print a simple message (i.e., “No data entered” or something else). It just needs to be obvious to the user something has happened.
 * Remember to handle (gracefully) cases where the user enters something incorrectly.
 
-## Outside Resources Used
+## Outside Resources Used: Youtube, Stack Overflow
 
-## Known Problems, Issues, And/Or Errors in the Program
+## Known Problems, Issues, And/Or Errors in the Program: No problems, any issues are outlined in comments within code.
 
 

@@ -113,9 +113,7 @@ namespace assignment1
             number = randomNumber.Next(low, high);
             return number;
         }
-
-
-
+        
         //Converts the random number that has been passed into an ascii character
         private static String ConvertToAscii(Int32 number)
         {
@@ -134,8 +132,7 @@ namespace assignment1
             return ascii;
 
         }
-
-
+        
         //Currently not used!
         //public static String CreateAnotherString(WineItemCollection[] collections)
         //{
